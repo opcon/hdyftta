@@ -10,3 +10,5 @@ window.addEventListener('load', function () {
   /* yo phaser:state new-state-files-put-here */
   game.state.start('boot');
 }, false);
+
+var airConsole = new AirConsole();

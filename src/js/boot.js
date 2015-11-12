@@ -6,6 +6,7 @@
   Boot.prototype = {
     preload: function () {
       this.load.image('preloader', 'assets/preloader.gif');
+      this.stage.disableVisibilityChange = true;
     },
 
     create: function () {
