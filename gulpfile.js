@@ -15,7 +15,8 @@ paths = {
   assets: 'src/assets/**/*',
   css:    'src/css/*.css',
   libs:   [
-    'src/bower_components/phaser-official/build/custom/phaser-ninja-physics.min.js'
+    'src/bower_components/phaser-official/build/phaser.min.js',
+    'src/*airconsole-controls/**/*'
   ],
   js:     ['src/js/**/*.js'],
   dist:   './dist/'
@@ -57,7 +58,7 @@ gulp.task('minifycss', ['clean'], function () {
 });
 
 gulp.task('processhtml', ['clean'], function() {
-  gulp.src('src/index.html')
+  gulp.src('src/*.html')
     .pipe(processhtml({}))
     .pipe(gulp.dest(paths.dist))
     .on('error', gutil.log);
