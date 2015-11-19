@@ -7,7 +7,7 @@ window.addEventListener('load', function () {
   'use strict';
 
   var ns = window['airconsole-test'];
-  var game = new Phaser.Game(1920, 1080, Phaser.AUTO, 'airconsole-test-game');
+  var game = new Phaser.Game(1280, 720, Phaser.AUTO, 'airconsole-test-game');
 
   game.state.add('boot', ns.Boot);
   game.state.add('preloader', ns.Preloader);
