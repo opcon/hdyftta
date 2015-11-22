@@ -1,24 +1,22 @@
-var EnemyShip = function (game, x, y, key, player) {
-	Phaser.Sprite.call(this, game, x, y, key);
+/* global ShipBase */
+var EnemyShip = function (game, x, y, key, player, weapon) {
+	ShipBase.call(this, game, x, y, key, weapon);
 
 	this.playerShip = player;
 	
-	this.anchor.setTo(0.5, 0.5);
-	this.game.physics.arcade.enableBody(this);
-	this.body.drag.set(1000);
-	this.body.angularDrag = 1000;
 	this.body.maxVelocity.set(250);
-	this.body.maxAngular = 200;
-	this.body.collideWorldBounds = false;
-	
-	this.SPEED = 500;
+
 	this.TURN_RATE = 5;
+	this.ACCELERATION = 400;
 };
 
-EnemyShip.prototype = Object.create(Phaser.Sprite.prototype);
+EnemyShip.prototype = Object.create(ShipBase.prototype);
 EnemyShip.prototype.constructor = EnemyShip;
 
 EnemyShip.prototype.update = function () {
+	//handle weapon firing
+	this.weapon.fire();
+	
 	var targetAngle = this.game.math.angleBetween(
 		this.x, this.y,
 		this.playerShip.x, this.playerShip.y
@@ -41,6 +39,6 @@ EnemyShip.prototype.update = function () {
 		}
 	}
 	
-	this.body.acceleration.x = Math.cos(this.rotation) * this.SPEED;
-	this.body.acceleration.y = Math.sin(this.rotation) * this.SPEED;
+	this.body.acceleration.x = Math.cos(this.rotation) * this.ACCELERATION;
+	this.body.acceleration.y = Math.sin(this.rotation) * this.ACCELERATION;
 };
