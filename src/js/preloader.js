@@ -20,6 +20,8 @@
     loadResources: function () {
       // load your assets here
       this.load.image('player-ship-1', 'assets/playerShip2_red.png');
+      this.load.image('enemy-ship-1', 'assets/enemyBlack1.png');
+      this.load.image('bullet-1', 'assets/laserRed16.png');
     },
 
     create: function () {
