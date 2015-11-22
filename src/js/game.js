@@ -19,12 +19,20 @@ var messageState = {
 
   Game.prototype = {
     create: function () {
+      //start the physics system
       this.game.physics.startSystem(Phaser.Physics.ARCADE);
       
-      var playerShip = new PlayerShip(this.game, this.game.width * 0.5, this.game.height * 0.5, 'player-ship-1');
+      //create the player ship
+      var playerShip = new PlayerShip(this.game, this.game.width * 0.5, this.game.height * 0.5,
+       'player-ship-1');
       this.add.existing(playerShip);
-      var enemyShip = new EnemyShip(this.game, 0, 0, 'player-ship-1', playerShip);
+      
+      //create the enemy ship
+      var enemyShip = new EnemyShip(this.game, this.game.width*0.5 - 300, this.game.height * 0.5 + 250,
+       'enemy-ship-1', playerShip);
       this.add.existing(enemyShip);
+      
+      //hook up airconsole
       window.airConsole.onMessage = this.messageRecieved;
     },
 
