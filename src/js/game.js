@@ -1,4 +1,4 @@
-/* global Phaser, PlayerShip, EnemyShip */
+/* global Phaser, PlayerShip, EnemyShip, Laser */
 
 var messageState = {
   left:false,
@@ -23,20 +23,46 @@ var messageState = {
       this.game.physics.startSystem(Phaser.Physics.ARCADE);
       
       //create the player ship
-      var playerShip = new PlayerShip(this.game, this.game.width * 0.5, this.game.height * 0.5,
-       'player-ship-1');
-      this.add.existing(playerShip);
+      this.playerWeapon = new Laser(this, 'bullet-1');
+      this.playerShip = new PlayerShip(this.game, this.game.width * 0.5, this.game.height * 0.5,
+       'player-ship-1', this.playerWeapon);
+      this.add.existing(this.playerShip);
       
       //create the enemy ship
-      var enemyShip = new EnemyShip(this.game, this.game.width*0.5 - 300, this.game.height * 0.5 + 250,
-       'enemy-ship-1', playerShip);
-      this.add.existing(enemyShip);
+      this.enemyWeapon = new Laser(this, 'bullet-2');
+      this.enemyWeapon.FIRING_DELAY = 400;
+      this.enemyWeapon.BULLET_SPEED = 500;
+      this.enemyShip = new EnemyShip(this.game, this.game.width*0.5 - 300, this.game.height * 0.5 + 250,
+       'enemy-ship-1', this.playerShip, this.enemyWeapon);
+      this.add.existing(this.enemyShip);
       
       //hook up airconsole
       window.airConsole.onMessage = this.messageRecieved;
     },
 
     update: function () {
+      //collide enemy ship with bullets
+      this.game.physics.arcade.overlap(this.playerShip, 
+      Laser.bulletPool, this.onShipBulletCollision);
+      
+      //collide player ship with bullets
+      this.game.physics.arcade.overlap(this.enemyShip, 
+      Laser.bulletPool, this.onShipBulletCollision);
+      
+      //collide enemy ship with player ship
+      this.game.physics.arcade.overlap(this.enemyShip, 
+      this.playerShip, this.onShipShipCollision);
+    },
+    
+    onShipBulletCollision: function(ship, bullet)
+    {
+      ship.onHit(bullet);
+    },
+    
+    onShipShipCollision: function(ship1, ship2)
+    {
+      ship1.onShipCollision(ship2);
+      ship2.onShipCollision(ship1);
     },
 
     // onInputDown: function () {
