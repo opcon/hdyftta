@@ -12,6 +12,8 @@ WeaponBase.prototype.canFire = function () {
 	return (this.game.time.now - this.lastBulletShotAt > this.FIRING_DELAY);	
 };
 
+WeaponBase.prototype.fire = function () {};
+
 var Laser = function(game, key) {
 	WeaponBase.call(this, game);
 	Laser.bulletPool = (Laser.bulletPool === undefined) ? game.add.group() : Laser.bulletPool;
