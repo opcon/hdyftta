@@ -1,7 +1,9 @@
-var Bullet = function (game, key) {
+var Bullet = function (game, key, parentShip, speed, damage) {
 	Phaser.Sprite.call(this, game, 0, 0, key);
+	this.parentShip = parentShip;
 	
-	this.BULLET_SPEED = 700;
+	this.BULLET_SPEED = (speed === undefined) ? 700 : speed;
+	this.BULLET_DAMAGE = (damage === undefined) ? 34 : damage;
 	this.game.physics.arcade.enableBody(this);
 	this.body.drag.set(0);
 	
