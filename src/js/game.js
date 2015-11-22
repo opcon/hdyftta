@@ -30,7 +30,7 @@ var messageState = {
       
       //create the enemy ship
       this.enemyWeapon = new Laser(this, 'bullet-2');
-      this.enemyWeapon.FIRING_DELAY = 400;
+      this.enemyWeapon.FIRING_DELAY = 700;
       this.enemyWeapon.BULLET_SPEED = 500;
       this.enemyShip = new EnemyShip(this.game, this.game.width*0.5 - 300, this.game.height * 0.5 + 250,
        'enemy-ship-1', this.playerShip, this.enemyWeapon);
@@ -57,6 +57,7 @@ var messageState = {
     onShipBulletCollision: function(ship, bullet)
     {
       ship.onHit(bullet);
+      bullet.onHit(ship);
     },
     
     onShipShipCollision: function(ship1, ship2)

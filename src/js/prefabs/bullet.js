@@ -22,3 +22,7 @@ Bullet.prototype.fire = function (rotation, speed) {
 	this.body.velocity.x = Math.cos(this.rotation) * speed;
 	this.body.velocity.y = Math.sin(this.rotation) * speed;
 };
+
+Bullet.prototype.onHit = function (ship) {
+	if (ship !== this.parentShip) {this.kill();}
+};
