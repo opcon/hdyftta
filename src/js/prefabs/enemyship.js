@@ -14,6 +14,8 @@ EnemyShip.prototype = Object.create(ShipBase.prototype);
 EnemyShip.prototype.constructor = EnemyShip;
 
 EnemyShip.prototype.update = function () {
+	if (!this.alive) {return;}
+	
 	//handle weapon firing
 	this.weapon.fire();
 	
@@ -41,4 +43,9 @@ EnemyShip.prototype.update = function () {
 	
 	this.body.acceleration.x = Math.cos(this.rotation) * this.ACCELERATION;
 	this.body.acceleration.y = Math.sin(this.rotation) * this.ACCELERATION;
+};
+
+EnemyShip.prototype.preSpawnLogic = function () {
+	this.startX = Math.random() * this.game.width;
+	this.startY = Math.random() * this.game.height;
 };

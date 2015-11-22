@@ -17,6 +17,8 @@ PlayerShip.prototype = Object.create(ShipBase.prototype);
 PlayerShip.prototype.constructor = PlayerShip;
 
 PlayerShip.prototype.update = function () {
+	if (!this.alive) {return;}
+	
 	//handle bullet firing
 	this.weapon.fire();
 	

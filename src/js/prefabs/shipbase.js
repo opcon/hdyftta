@@ -25,15 +25,41 @@ var ShipBase = function (game, x, y, key, weapon) {
 	//Add weapon
 	this.weapon = weapon;
 	weapon.parentShip = this;
+	
+	//Setup health information
+	this.maxHealth = 100;
+	this.health = 100;
+	
+	//Setup damage information
+	this.SHIP_COLLISION_DAMAGE = 50;
+	
+	//Respawn delay in seconds
+	this.RESPAWN_DELAY = 1000;
+	
+	//Setup death callbacks
+	this.events.onKilled.add(this.onDeath, this);
 };
 
 ShipBase.prototype = Object.create(Phaser.Sprite.prototype);
 ShipBase.prototype.constructor = ShipBase;
 
+ShipBase.prototype.preSpawnLogic = function () {};
+
 ShipBase.prototype.onHit = function (bullet) {
-	if (bullet.parentShip !== this) {this.reset(this.startX, this.startY);}
+	if (bullet.parentShip !== this) {
+		this.damage(bullet.BULLET_DAMAGE);
+	}
 };
 
 ShipBase.prototype.onShipCollision = function () {
-	this.reset(this.startX, this.startY);
+	this.damage(this.SHIP_COLLISION_DAMAGE);
+};
+
+ShipBase.prototype.onDeath = function () {
+	this.game.time.events.add(this.RESPAWN_DELAY, this.respawn, this);
+};
+
+ShipBase.prototype.respawn = function () {
+	this.preSpawnLogic();
+	this.reset(this.startX, this.startY, this.maxHealth);
 };
