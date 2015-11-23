@@ -11,10 +11,6 @@ var EnemyDirector = function (game, playerShip) {
 	
 	this.enemyKey = 'enemy-ship-1';
 	
-	this.enemyWeapon = new QuadLaser(this.game, 'bullet-2');
-	this.enemyWeapon.FIRING_DELAY = 400;
-	this.BULLET_SPEED = 500;
-	
 	this.SPAWN_PADDING = 50;
 };
 
@@ -40,7 +36,10 @@ EnemyDirector.prototype.spawnEnemy = function () {
 	
 	//If there aren't any available, create a new one
 	if (enemy === null) {
-		enemy = this.createEnemy(this.enemyWeapon);
+		var enemyWeapon = new QuadLaser(this.game, 'bullet-2');
+		enemyWeapon.FIRING_DELAY = 600;
+		enemyWeapon.BULLET_SPEED = 500;
+		enemy = this.createEnemy(enemyWeapon);
 	}
 	
 	var hor = this.game.rnd.integerInRange(0, 3);
