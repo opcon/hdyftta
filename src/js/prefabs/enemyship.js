@@ -8,6 +8,7 @@ var EnemyShip = function (game, x, y, key, player, weapon) {
 
 	this.TURN_RATE = 5;
 	this.ACCELERATION = 400;
+	this.BASE_TARGETING_ERROR = Math.PI / 4;
 	
 	//Alter ship collision properties for enemy ships
 	//Have smaller impact on other ship's movement
@@ -30,7 +31,7 @@ EnemyShip.prototype.update = function () {
 		this.playerShip.x, this.playerShip.y
 	);
 	
-	if (this.rotation !== targetAngle) {
+	if (Math.abs(this.rotation - targetAngle) > this.targetingError) {
 		var delta = targetAngle - this.rotation;
 		
 		if (delta > Math.PI) { delta -= Math.Pi * 2; }
@@ -58,6 +59,5 @@ EnemyShip.prototype.respawn = function (x, y) {
 };
 
 EnemyShip.prototype.preSpawnLogic = function () {
-	this.startX = Math.random() * this.game.width;
-	this.startY = Math.random() * this.game.height;
+	this.targetingError = this.BASE_TARGETING_ERROR * this.game.rnd.realInRange(0.5,1.5);
 };
