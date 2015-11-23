@@ -22,7 +22,6 @@ WeaponBase.prototype.fire = function () {
 WeaponBase.prototype._fireBullet = function (bulletPool, bulletX, bulletY, bulletRotation) {
 	var bullet = null;
 	//Get the first dead bullet matching the key
-	console.log(bulletPool.countDead() + bulletPool.countLiving());
 	bulletPool.forEachDead(function(b) {
 		if (b.key == this.key) {bullet = b;}
 	}, this);
