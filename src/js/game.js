@@ -23,13 +23,13 @@ var messageState = {
       this.game.physics.startSystem(Phaser.Physics.ARCADE);
       
       //create the player ship
-      this.playerWeapon = new Laser(this, 'bullet-1');
+      this.playerWeapon = new QuadLaser(this, 'bullet-1');
       this.playerShip = new PlayerShip(this.game, this.game.width * 0.5, this.game.height * 0.5,
        'player-ship-1', this.playerWeapon);
       this.add.existing(this.playerShip);
       
       //create the enemy ship
-      this.enemyWeapon = new Laser(this, 'bullet-2');
+      this.enemyWeapon = new QuadLaser(this, 'bullet-2');
       this.enemyWeapon.FIRING_DELAY = 700;
       this.enemyWeapon.BULLET_SPEED = 500;
       this.enemyShip = new EnemyShip(this.game, this.game.width*0.5 - 300, this.game.height * 0.5 + 250,
@@ -76,7 +76,7 @@ var messageState = {
     // },
 
     messageRecieved: function(from, data) {
-      if (from === 1) {
+      if (from === 3) {
         if (data.key === 'left') {
           messageState.left = data.pressed;
         }
@@ -92,7 +92,7 @@ var messageState = {
           messageState.down = data.pressed;
         }
       }
-      if (from === 3) {
+      if (from === 1) {
         if (data.key === 'left') {
           messageState.ccw = data.pressed;
         }
