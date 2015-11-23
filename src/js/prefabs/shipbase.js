@@ -67,7 +67,7 @@ ShipBase.prototype.onShipCollision = function (ship) {
 
 ShipBase.prototype.onDamage = function () {
 	this.invulnerable = true;
-	this.tint = 0xff0000; //DEBUG
+	this.tint = 0xff8080; //DEBUG
 	this.game.time.events.add(this.SHIP_DAMAGE_INVULN_TIME, 
 		function() {
 			this.invulnerable = false;
