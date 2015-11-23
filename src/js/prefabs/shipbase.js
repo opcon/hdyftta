@@ -11,7 +11,7 @@ var ShipBase = function (game, x, y, key, weapon) {
 	this.body.angularDrag = 1000;
 	this.body.maxVelocity.set(400);
 	this.body.maxAngular = 200;
-	this.body.collideWorldBounds = true;
+	this.body.collideWorldBounds = false;
 	this.ACCELERATION = 600;
 	this.ANGULAR_ACCELERATION = 400;
 	

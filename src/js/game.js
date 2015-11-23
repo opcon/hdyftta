@@ -41,6 +41,9 @@ var messageState = {
     },
 
     update: function () {
+      this.world.wrap(this.playerShip, 0);
+      this.world.wrap(this.enemyShip, 0, true);
+      
       //collide enemy ship with bullets
       this.game.physics.arcade.overlap(this.playerShip, 
       Laser.bulletPool, this.onShipBulletCollision);
