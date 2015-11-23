@@ -51,6 +51,12 @@ EnemyShip.prototype.update = function () {
 	this.body.acceleration.y = Math.sin(this.rotation) * this.ACCELERATION;
 };
 
+EnemyShip.prototype.onDeath = function () {};
+EnemyShip.prototype.respawn = function (x, y) {
+	this.preSpawnLogic();
+	this.reset(x, y, this.maxHealth);
+};
+
 EnemyShip.prototype.preSpawnLogic = function () {
 	this.startX = Math.random() * this.game.width;
 	this.startY = Math.random() * this.game.height;
