@@ -51,9 +51,11 @@ var messageState = {
       this.game.physics.arcade.overlap(this.playerShip, 
       Laser.bulletPool, this.onShipBulletCollision);
       
-      //collide enemy ship with bullets
-      this.game.physics.arcade.overlap(this.enemyDirector.enemyPool, 
-      Laser.bulletPool, this.onShipBulletCollision);
+      //collide enemy ships with bullets
+      if (Laser.bulletPool !== undefined) {
+        this.game.physics.arcade.overlap(this.enemyDirector.enemyPool, 
+        Laser.bulletPool, this.onShipBulletCollision);
+      }
       
       //collide enemy ship with player ship
       this.game.physics.arcade.overlap(this.enemyDirector.enemyPool, 
@@ -64,6 +66,7 @@ var messageState = {
     
     onShipBulletCollision: function(ship, bullet)
     {
+      if (ship === undefined || bullet === undefined) return;
       if (!ship.invulnerable) {ship.onHit(bullet);}
       bullet.onHit(ship);
     },
