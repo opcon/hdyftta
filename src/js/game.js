@@ -24,7 +24,6 @@ var messageState = {
       
       //create the player ship
       this.playerWeapon = new OctoLaser(this, 'bullet-1');
-      // this.playerWeapon.DIRECTIONS = 32;
       this.playerShip = new PlayerShip(this.game, this.game.width * 0.5, this.game.height * 0.5,
        'player-ship-1', this.playerWeapon);
       this.add.existing(this.playerShip);
