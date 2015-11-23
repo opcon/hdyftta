@@ -56,14 +56,19 @@ var messageState = {
     
     onShipBulletCollision: function(ship, bullet)
     {
-      ship.onHit(bullet);
+      if (!ship.invulnerable) {ship.onHit(bullet);}
       bullet.onHit(ship);
     },
     
     onShipShipCollision: function(ship1, ship2)
     {
-      ship1.onShipCollision(ship2);
-      ship2.onShipCollision(ship1);
+      if (!ship1.invulnerable) {ship1.onShipCollision(ship2);}
+      if (!ship2.invulnerable) {ship2.onShipCollision(ship1);}
+    },
+    
+    render: function() {
+      //this.game.debug.body(this.playerShip);
+      //this.game.debug.body(this.enemyShip);
     },
 
     // onInputDown: function () {

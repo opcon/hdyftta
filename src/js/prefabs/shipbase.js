@@ -29,9 +29,12 @@ var ShipBase = function (game, x, y, key, weapon) {
 	//Setup health information
 	this.maxHealth = 100;
 	this.health = 100;
+	this.invulnerable = false;
 	
 	//Setup damage information
 	this.SHIP_COLLISION_DAMAGE = 50;
+	//Setup damage information for this ship
+	this.SHIP_DAMAGE_INVULN_TIME = 100;
 	
 	//Respawn delay in seconds
 	this.RESPAWN_DELAY = 1000;
