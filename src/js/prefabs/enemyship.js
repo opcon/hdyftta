@@ -8,6 +8,12 @@ var EnemyShip = function (game, x, y, key, player, weapon) {
 
 	this.TURN_RATE = 5;
 	this.ACCELERATION = 400;
+	
+	//Alter ship collision properties for enemy ships
+	//Have smaller impact on other ship's movement
+	this.SHIP_COLLISION_VELOCITY = 100;
+	//Do less damage to other ship
+	this.SHIP_COLLISION_DAMAGE = 20;
 };
 
 EnemyShip.prototype = Object.create(ShipBase.prototype);

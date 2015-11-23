@@ -11,6 +11,11 @@ var PlayerShip = function (game, x, y, key, weapon) {
 	cursorKeys = this.game.input.keyboard.createCursorKeys();
 	keyRotateClockwise = this.game.input.keyboard.addKey(Phaser.Keyboard.E);
 	keyRotateAntiClockwise = this.game.input.keyboard.addKey(Phaser.Keyboard.Q);
+	
+	this.body.height *= 0.75;
+	this.body.width *= 0.75;
+	
+	this.SHIP_COLLISION_VELOCITY = 1000;
 };
 
 PlayerShip.prototype = Object.create(ShipBase.prototype);

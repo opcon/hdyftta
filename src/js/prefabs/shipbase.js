@@ -31,8 +31,10 @@ var ShipBase = function (game, x, y, key, weapon) {
 	this.health = 100;
 	this.invulnerable = false;
 	
-	//Setup damage information
+	//Setup collision information for ship
 	this.SHIP_COLLISION_DAMAGE = 50;
+	this.SHIP_COLLISION_VELOCITY = 500;
+	
 	//Setup damage information for this ship
 	this.SHIP_DAMAGE_INVULN_TIME = 100;
 	
@@ -51,11 +53,27 @@ ShipBase.prototype.preSpawnLogic = function () {};
 ShipBase.prototype.onHit = function (bullet) {
 	if (bullet.parentShip !== this) {
 		this.damage(bullet.BULLET_DAMAGE);
+		this.onDamage();
 	}
 };
 
-ShipBase.prototype.onShipCollision = function () {
-	this.damage(this.SHIP_COLLISION_DAMAGE);
+ShipBase.prototype.onShipCollision = function (ship) {
+	this.damage(ship.SHIP_COLLISION_DAMAGE);
+	this.game.physics.arcade.velocityFromRotation(
+		this.game.math.angleBetweenPoints(this.position, ship.position),
+		 -ship.SHIP_COLLISION_VELOCITY, this.body.velocity);
+	this.onDamage();
+};
+
+ShipBase.prototype.onDamage = function () {
+	this.invulnerable = true;
+	this.tint = 0xff0000; //DEBUG
+	this.game.time.events.add(this.SHIP_DAMAGE_INVULN_TIME, 
+		function() {
+			this.invulnerable = false;
+			this.tint = 0xffffff; //DEBUG 
+		}, 
+		this);	
 };
 
 ShipBase.prototype.onDeath = function () {
