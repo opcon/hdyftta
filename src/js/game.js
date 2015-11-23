@@ -1,4 +1,4 @@
-/* global Phaser, PlayerShip, Laser, QuadLaser, EnemyDirector */
+/* global Phaser, PlayerShip, Laser, QuadLaser, EnemyDirector, OctoLaser */
 
 var messageState = {
   left:false,
