@@ -51,7 +51,7 @@ ShipBase.prototype.constructor = ShipBase;
 ShipBase.prototype.preSpawnLogic = function () {};
 
 ShipBase.prototype.onHit = function (bullet) {
-	if (bullet.parentShip !== this) {
+	if (bullet.parentShip.constructor !== this.constructor) {
 		this.damage(bullet.BULLET_DAMAGE);
 		this.onDamage();
 	}

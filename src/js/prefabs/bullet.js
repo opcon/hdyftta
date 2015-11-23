@@ -24,5 +24,5 @@ Bullet.prototype.fire = function (rotation, speed) {
 };
 
 Bullet.prototype.onHit = function (ship) {
-	if (ship !== this.parentShip) {this.kill();}
+	if (ship.constructor !== this.parentShip.constructor) {this.kill();}
 };
