@@ -65,7 +65,7 @@ var messageState = {
     
     onShipBulletCollision: function(ship, bullet)
     {
-      if (ship === undefined || bullet === undefined) return;
+      if (ship === undefined || bullet === undefined) {return;}
       if (!ship.invulnerable) {ship.onHit(bullet);}
       bullet.onHit(ship);
     },

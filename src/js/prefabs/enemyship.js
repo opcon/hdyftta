@@ -36,10 +36,10 @@ EnemyShip.prototype.update = function () {
 	var avoidAngle = 0;
     this.parent.forEachAlive(function(s) {
         // Don't calculate anything if the other ship is me
-        if (this == s) return;
+        if (this === s) {return;}
 
         // Already found an avoidAngle so skip the rest
-        if (avoidAngle !== 0) return;
+        if (avoidAngle !== 0) {return;}
 
         // Calculate the distance between me and the other ship
         var distance = this.game.math.distance(this.x, this.y, s.x, s.y);
@@ -48,7 +48,7 @@ EnemyShip.prototype.update = function () {
         if (distance < this.AVOID_DISTANCE) {
             // Chose an avoidance angle of 90 or -90 (in radians)
             avoidAngle = Math.PI/2; // zig
-            if (this.game.rnd.between(0,1)) avoidAngle *= -1; // zag
+            if (this.game.rnd.between(0,1)) {avoidAngle *= -1;} // zag
         }
     }, this);
 	
