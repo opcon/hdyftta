@@ -28,7 +28,8 @@ EnemyDirector.prototype.update = function () {
 EnemyDirector.prototype.spawnEnemy = function () {
 	var enemy = null;
 	
-	console.log(this.enemyPool.countDead() + this.enemyPool.countLiving());
+	//console.log(this.enemyPool.countDead() + this.enemyPool.countLiving());
+	
 	//Get the first dead enemy matching the key
 	this.enemyPool.forEachDead(function (e) {
 		if (e.key == this.enemyKey) {enemy = e;}
