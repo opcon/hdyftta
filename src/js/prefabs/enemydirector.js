@@ -46,22 +46,22 @@ EnemyDirector.prototype.spawnEnemy = function () {
 	switch (hor) {
 		case 0:
 			//top
-			enemy.respawn(this.game.rnd.frac()*(this.game.width - this.SPAWN_PADDING) + this.SPAWN_PADDING,
+			enemy.spawn(this.game.rnd.frac()*(this.game.width - this.SPAWN_PADDING) + this.SPAWN_PADDING,
 				this.SPAWN_PADDING);
 			break;
 		case 1:
 			//right
-			enemy.respawn(this.game.width - this.SPAWN_PADDING,
+			enemy.spawn(this.game.width - this.SPAWN_PADDING,
 				this.game.rnd.frac()*(this.game.height - this.SPAWN_PADDING) + this.SPAWN_PADDING);
 			break;
 		case 2:
 			//bottom
-			enemy.respawn(this.game.rnd.frac()*(this.game.width - this.SPAWN_PADDING) + this.SPAWN_PADDING,
+			enemy.spawn(this.game.rnd.frac()*(this.game.width - this.SPAWN_PADDING) + this.SPAWN_PADDING,
 				this.game.height - this.SPAWN_PADDING);
 			break;
 		case 3:
 			//left
-			enemy.respawn(this.SPAWN_PADDING,
+			enemy.spawn(this.SPAWN_PADDING,
 				this.game.rnd.frac()*(this.game.height - this.SPAWN_PADDING) + this.SPAWN_PADDING);
 			break;
 		default:

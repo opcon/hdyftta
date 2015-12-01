@@ -76,7 +76,8 @@ EnemyShip.prototype.update = function () {
 };
 
 EnemyShip.prototype.onDeath = function () {};
-EnemyShip.prototype.respawn = function (x, y) {
+EnemyShip.prototype.respawn = function () {};
+EnemyShip.prototype.spawn = function (x, y) {
 	this.preSpawnLogic();
 	this.reset(x, y, this.maxHealth);
 };
