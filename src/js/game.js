@@ -44,6 +44,12 @@ var PlayerControlEnum = {
       
       //hook up airconsole
       window.airConsole.onMessage = this.messageRecieved;
+      console.log(window.airConsole);
+      console.log(window.airConsole.onMessage);
+      window.airConsole.onConnect = this.playerCountChanged;
+      window.airConsole.onDisconnect = this.playerCountChanged;
+      
+      this.playerCountChanged();
     },
 
     update: function () {
@@ -116,6 +122,10 @@ var PlayerControlEnum = {
       }
       console.log(from);
       console.log(data);
+    playerCountChanged: function() {
+      console.log('player count changed');
+      window.airConsole.setActivePlayers();
+      window.airConsoleHelper.updateActivePlayers();
     }
   };
 

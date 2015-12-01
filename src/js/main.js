@@ -1,7 +1,9 @@
-/* global AirConsole */
-/* exported airConsole */
+/* global AirConsole, AirConsoleHelper */
+/* exported airConsole, airConsoleHelper */
 
 var airConsole = new AirConsole();
+
+var airConsoleHelper = new AirConsoleHelper(airConsole, 6);
 
 window.addEventListener('load', function () {
   'use strict';
