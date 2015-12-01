@@ -12,12 +12,11 @@ var EnemyShip = function (game, x, y, key, player, weapon) {
 	this.AVOID_DISTANCE = 100;
 	
 	//Alter ship collision properties for enemy ships
-	//Have smaller impact on other ship's movement
+//Have smaller impact on other ship's movement
 	this.SHIP_COLLISION_VELOCITY = 100;
 	//Do less damage to other ship
 	this.SHIP_COLLISION_DAMAGE = 20;
 };
-
 EnemyShip.prototype = Object.create(ShipBase.prototype);
 EnemyShip.prototype.constructor = EnemyShip;
 
@@ -27,6 +26,12 @@ EnemyShip.prototype.update = function () {
 	//handle weapon firing
 	this.weapon.fire();
 	
+	this.rotateToPlayer();
+	
+	this.move();
+};
+
+EnemyShip.prototype.rotateToPlayer = function () {
 	var targetAngle = this.game.math.angleBetween(
 		this.x, this.y,
 		this.playerShip.x, this.playerShip.y
@@ -70,13 +75,16 @@ EnemyShip.prototype.update = function () {
 			this.rotation = targetAngle;
 		}
 	}
-	
+};
+
+EnemyShip.prototype.move = function () {
 	this.body.acceleration.x = Math.cos(this.rotation) * this.ACCELERATION;
 	this.body.acceleration.y = Math.sin(this.rotation) * this.ACCELERATION;
 };
 
 EnemyShip.prototype.onDeath = function () {};
 EnemyShip.prototype.respawn = function () {};
+
 EnemyShip.prototype.spawn = function (x, y) {
 	this.preSpawnLogic();
 	this.reset(x, y, this.maxHealth);
