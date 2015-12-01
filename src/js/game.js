@@ -9,7 +9,11 @@ var messageState = {
   ccw:false
 };
 
-
+var PlayerControlEnum = {
+  ROTATION: 0,
+  VERTICAL: 1,
+  HORIZONTAL: 2
+};
 
 (function() {
   'use strict';
