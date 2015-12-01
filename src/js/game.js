@@ -96,32 +96,36 @@ var PlayerControlEnum = {
     // },
 
     messageRecieved: function(from, data) {
-      if (from === 3) {
-        if (data.key === 'left') {
-          messageState.left = data.pressed;
+      //window.airConsoleHelper.updateActivePlayers();
+      console.log('player to device id :' + window.airConsole.convertPlayerNumberToDeviceId(PlayerControlEnum.ROTATION));
+      console.log('from device id :' + from);
+      
+      if (from === window.airConsole.convertPlayerNumberToDeviceId(PlayerControlEnum.HORIZONTAL)) {
+        if (data.hasOwnProperty('left')) {
+          messageState.left = data.left.pressed;
         }
-        if (data.key === 'right') {
-          messageState.right = data.pressed;
-        }
-      }
-      if (from === 2) {
-        if (data.key === 'left') {
-          messageState.up = data.pressed;
-        }
-        if (data.key === 'right') {
-          messageState.down = data.pressed;
+        if (data.hasOwnProperty('right')) {
+          messageState.right = data.right.pressed;
         }
       }
-      if (from === 1) {
-        if (data.key === 'left') {
-          messageState.ccw = data.pressed;
+      if (from === window.airConsole.convertPlayerNumberToDeviceId(PlayerControlEnum.VERTICAL)) {
+        if (data.hasOwnProperty('left')) {
+          messageState.up = data.left.pressed;
         }
-        if (data.key === 'right') {
-          messageState.cw = data.pressed;
+        if (data.hasOwnProperty('right')) {
+          messageState.down = data.right.pressed;
         }
       }
-      console.log(from);
-      console.log(data);
+      if (from === window.airConsole.convertPlayerNumberToDeviceId(PlayerControlEnum.ROTATION)) {
+        if (data.hasOwnProperty('left')) {
+          messageState.ccw = data.left.pressed;
+        }
+        if (data.hasOwnProperty('right')) {
+          messageState.cw = data.right.pressed;
+        }
+      }
+    },
+    
     playerCountChanged: function() {
       console.log('player count changed');
       window.airConsole.setActivePlayers();
