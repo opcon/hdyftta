@@ -74,16 +74,13 @@ var PlayerControlEnum = {
 
 var controlIDs = {
   LEFT: 'ButtonVertical-1',
-  RIGHT: 'ButtonVertical-2'
+  RIGHT: 'ButtonVertical-3'
 };
 
 CtrlGenerator.setAirConsole(airconsole);
-CtrlGenerator.generate({"left":[{"type":{"label":"ButtonVertical","class_name":"Button"},"label":"Left","key":"left","on_up_message":true}],"middle":[],"right":[{"type":{"label":"ButtonVertical","class_name":"Button"},"label":"Right","key":"right","on_up_message":true}]});
+CtrlGenerator.generate({"left":[{"type":{"label":"ButtonVertical","class_name":"Button"},"label":"Left","key":"left","on_up_message":true}],"middle":[{"label":"Menu","key":"menu"}],"right":[{"type":{"label":"ButtonVertical","class_name":"Button"},"label":"Right","key":"right","on_up_message":true}]});
 
 airconsole.onMessage = function (from, data) {
-  console.log('message recieved from: ' + from);
-  console.log(AirConsole.SCREEN);
-  console.log(data);
   if (from === AirConsole.SCREEN) {
     //are we updating the role of this controller?
     if (data.hasOwnProperty('role')) {
