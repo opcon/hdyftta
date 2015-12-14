@@ -3,7 +3,7 @@
 
 var airConsole = new AirConsole();
 
-var airConsoleHelper = new AirConsoleHelper(airConsole, 6);
+var airConsoleHelper = new AirConsoleHelper(airConsole, 1);
 
 window.addEventListener('load', function () {
   'use strict';

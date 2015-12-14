@@ -27,9 +27,9 @@ PlayerShip.prototype.update = function () {
 	//handle bullet firing
 	this.weapon.fire();
 	
-	if (keyRotateClockwise.isDown || messageState.cw) {
+	if (keyRotateClockwise.isDown || this.messageState.cw) {
 		this.body.angularAcceleration = this.ANGULAR_ACCELERATION;
-	} else if (keyRotateAntiClockwise.isDown || messageState.ccw) {
+	} else if (keyRotateAntiClockwise.isDown || this.messageState.ccw) {
 		this.body.angularAcceleration = -this.ANGULAR_ACCELERATION;
 	} else {
 		this.body.angularAcceleration = 0;
@@ -37,9 +37,9 @@ PlayerShip.prototype.update = function () {
 	
 	var vertical = true;
 	var pv = new Phaser.Point(0, 0);
-	if (cursorKeys.up.isDown || messageState.up) {
+	if (cursorKeys.up.isDown || this.messageState.up) {
 		pv = this.game.physics.arcade.accelerationFromRotation(this.rotation, this.ACCELERATION);
-	} else if (cursorKeys.down.isDown || messageState.down) {
+	} else if (cursorKeys.down.isDown || this.messageState.down) {
 		pv = this.game.physics.arcade.accelerationFromRotation(this.rotation, -this.ACCELERATION);
 	} else {
 		vertical = false;
@@ -47,9 +47,9 @@ PlayerShip.prototype.update = function () {
 
 	var horizontal = true;
 	var ph = new Phaser.Point(0, 0);
-	if (cursorKeys.left.isDown || messageState.left) {
+	if (cursorKeys.left.isDown || this.messageState.left) {
 		ph = this.game.physics.arcade.accelerationFromRotation(this.rotation + this.game.math.degToRad(90), -this.ACCELERATION);
-	} else if (cursorKeys.right.isDown || messageState.right) {
+	} else if (cursorKeys.right.isDown || this.messageState.right) {
 		ph = this.game.physics.arcade.accelerationFromRotation(this.rotation + this.game.math.degToRad(90), this.ACCELERATION);
 	} else {
 		horizontal = false;
