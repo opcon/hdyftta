@@ -1,9 +1,9 @@
-/* global Phaser, messageState, ShipBase */
+/* global Phaser, ShipBase */
 var cursorKeys;
 var keyRotateClockwise;
 var keyRotateAntiClockwise;
 
-var PlayerShip = function (game, x, y, key, weapon) {	
+var PlayerShip = function (game, x, y, key, weapon, airConsoleHelper, shipNumber) {	
 	//call base constructor
 	ShipBase.call(this, game, x, y, key, weapon);
 	
@@ -16,6 +16,11 @@ var PlayerShip = function (game, x, y, key, weapon) {
 	this.body.width *= 0.75;
 	
 	this.SHIP_COLLISION_VELOCITY = 1000;
+	
+	this.airConsoleHelper = airConsoleHelper;
+	this.shipNumber = shipNumber;
+	
+	this.messageState = airConsoleHelper.getMessageState(shipNumber);
 };
 
 PlayerShip.prototype = Object.create(ShipBase.prototype);
