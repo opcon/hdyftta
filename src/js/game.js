@@ -26,6 +26,10 @@ var PlayerControlEnum = {
       this.playerShip = new PlayerShip(this.game, this.game.width * 0.5, this.game.height * 0.5,
        'player-ship-1', this.playerWeapon, window.airConsoleHelper, 0);
       this.add.existing(this.playerShip);
+      // this.playerWeapon1 = new OctoLaser(this, 'bullet-1');
+      // this.playerShip1 = new PlayerShip(this.game, this.game.width * 0.5, this.game.height * 0.5,
+      //  'player-ship-1', this.playerWeapon1, window.airConsoleHelper, 1);
+      // this.add.existing(this.playerShip1);
       
       this.enemyDirector = new EnemyDirector(this.game, this.playerShip);
     },
@@ -37,6 +41,8 @@ var PlayerControlEnum = {
       //collide player ship with bullets
       this.game.physics.arcade.overlap(this.playerShip, 
       Laser.bulletPool, this.onShipBulletCollision);
+      // this.game.physics.arcade.overlap(this.playerShip1, 
+      // Laser.bulletPool, this.onShipBulletCollision);
       
       //collide enemy ships with bullets
       if (Laser.bulletPool !== undefined) {
@@ -47,6 +53,8 @@ var PlayerControlEnum = {
       //collide enemy ship with player ship
       this.game.physics.arcade.overlap(this.enemyDirector.enemyPool, 
       this.playerShip, this.onShipShipCollision);
+      // this.game.physics.arcade.overlap(this.enemyDirector.enemyPool, 
+      // this.playerShip1, this.onShipShipCollision);
       
       this.enemyDirector.update();
     },
