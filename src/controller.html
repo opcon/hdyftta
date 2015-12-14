@@ -65,6 +65,53 @@
 <script type="text/javascript" src="airconsole-controls/ctrl-generator/ctrl-generator.js"></script>
 <script type="text/javascript">
 var airconsole = new AirConsole({orientation: AirConsole.ORIENTATION_LANDSCAPE});
+
+var PlayerControlEnum = {
+  ROTATION: 0,
+  VERTICAL: 1,
+  HORIZONTAL: 2
+};
+
+var controlIDs = {
+  LEFT: 'ButtonVertical-1',
+  RIGHT: 'ButtonVertical-2'
+};
+
 CtrlGenerator.setAirConsole(airconsole);
 CtrlGenerator.generate({"left":[{"type":{"label":"ButtonVertical","class_name":"Button"},"label":"Left","key":"left","on_up_message":true}],"middle":[],"right":[{"type":{"label":"ButtonVertical","class_name":"Button"},"label":"Right","key":"right","on_up_message":true}]});
-</script></body></html>
+
+airconsole.onMessage = function (from, data) {
+  console.log('message recieved from: ' + from);
+  console.log(AirConsole.SCREEN);
+  console.log(data);
+  if (from === AirConsole.SCREEN) {
+    //are we updating the role of this controller?
+    if (data.hasOwnProperty('role')) {
+      //update the controller to match the new role
+      switch (data.role) {
+        case PlayerControlEnum.ROTATION:
+          updateControlText("Rotate Counter-Clockwise", "Rotate Clockwise");
+          break;
+        case PlayerControlEnum.VERTICAL:
+          updateControlText("Forwards", "Backwards");
+          break;
+        case PlayerControlEnum.HORIZONTAL:
+          updateControlText("Left", "Right");
+          break;
+        default:
+      }
+    }
+  }
+};
+
+function updateControlText(ltext, rtext)
+{
+  //get the control text
+  var lcont = document.getElementById(controlIDs.LEFT).children[0];
+  var rcont = document.getElementById(controlIDs.RIGHT).children[0];
+  lcont.textContent = ltext;
+  rcont.textContent = rtext;
+}
+</script>
+<script type="text/javascript" src="js/controller.js"></script>
+</body></html>

@@ -44,8 +44,6 @@ var PlayerControlEnum = {
       
       //hook up airconsole
       window.airConsole.onMessage = this.messageRecieved;
-      console.log(window.airConsole);
-      console.log(window.airConsole.onMessage);
       window.airConsole.onConnect = this.playerCountChanged;
       window.airConsole.onDisconnect = this.playerCountChanged;
       
